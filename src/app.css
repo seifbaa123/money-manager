@@ -1,0 +1,135 @@
+@font-face {
+    font-family: NotoSansArabic;
+    src: url("/fonts/NotoSansArabic.ttf");
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url("/fonts/OpenSans.ttf");
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: NotoSansArabic, OpenSans;
+}
+
+:root {
+    --white: #fefeff;
+    --light-gray: #f5f5f9;
+    --dark-gray: #454545;
+    --black: #2b2b2b;
+    --blue: #696cff;
+    --red: #ca3e47;
+    --green: #80e04d;
+
+    --side-bar-width: 4rem;
+    --shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    color: var(--black);
+    background-color: var(--white);
+}
+
+body.dark {
+    --white: #2b2b2b;
+    --light-gray: #454545;
+    --dark-gray: #f5f5f9;
+    --black: #fefeff;
+}
+
+form {
+    width: 100%;
+}
+
+button,
+input,
+textarea {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5em 1.25em;
+    border-radius: .25em;
+    color: var(--white);
+    background-color: var(--light-gray);
+    transition: all .3s ease-out;
+    cursor: pointer;
+}
+
+.btn.primary {
+    color: white;
+    background-color: var(--blue);
+}
+
+.btn.full-width {
+    display: block;
+    width: 100%;
+}
+
+.btn:hover {
+    color: var(--white);
+    background-color: var(--dark-gray);
+}
+
+/* .splash-screen {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    z-index: 10000;
+} */
+
+.loading-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    z-index: 10000;
+}
+
+.loading-dot {
+    width: 15px;
+    height: 15px;
+    background-color: var(--blue);
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
