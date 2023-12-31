@@ -16,6 +16,7 @@
 		const data = await res.json();
 		if (data.token) {
 			Cookies.set('token', data.token);
+			Cookies.set('username', username);
 			goto('/');
 		}
 	}
