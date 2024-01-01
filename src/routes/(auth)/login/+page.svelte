@@ -3,6 +3,8 @@
 	import Cookies from 'js-cookie';
 	import Input from '$lib/components/Input.svelte';
 	import { lang } from '$lib/store';
+	import { addUser } from '$lib/users';
+	import LoginAsUser from '$lib/components/LoginAsUser.svelte';
 
 	let username: string;
 	let password: string;
@@ -15,6 +17,7 @@
 		});
 		const data = await res.json();
 		if (data.token) {
+			addUser(username, data.token);
 			Cookies.set('token', data.token);
 			Cookies.set('username', username);
 			goto('/');
@@ -28,4 +31,5 @@
 	<Input label={$lang.words.password} bind:value={password} type="password" />
 	<button class="btn primary full-width">{$lang.words.submit}</button>
 	<a href="/signup" class="link">{$lang.words.signup}</a>
+	<LoginAsUser />
 </form>

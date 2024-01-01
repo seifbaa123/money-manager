@@ -1,16 +1,32 @@
 <script lang="ts">
 	import { lang } from '$lib/store';
 	import Cookies from 'js-cookie';
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { generateColorsFromUsername } from '$lib/utils';
+	import { deleteUser, getUserToken, getUsers } from '$lib/users';
 
-	const username = Cookies.get('username') as string;
-	const colors = generateColorsFromUsername(username);
+	let username = Cookies.get('username') as string;
+	$: colors = generateColorsFromUsername(username);
+
+	let loggedInUsers = getUsers();
 
 	let showDialog = false;
+
+	function setUser(user: string) {
+		const token = getUserToken(user);
+		username = user;
+		Cookies.set('username', user);
+		Cookies.set('token', token);
+
+		loggedInUsers = loggedInUsers;
+		invalidateAll();
+	}
+
 	function logout() {
 		if (confirm($lang.words.are_you_sure_you_want_to_logout)) {
+			deleteUser(username);
 			Cookies.remove('token');
+			Cookies.remove('username');
 			goto('/login');
 		}
 	}
@@ -25,12 +41,22 @@
 	</button>
 	{#if showDialog}
 		<div class="dialog">
-			<div class="user">
-				<div class="icon" style="background-color: {colors.bg}; color: {colors.text}">
-					{username[0]}
-				</div>
-				<span>{username}</span>
-			</div>
+			{#each loggedInUsers as user}
+				<button class="user {username === user ? 'selected' : ''}" on:click={() => setUser(user)}>
+					<div
+						class="icon"
+						style="background-color: {generateColorsFromUsername(user)
+							.bg}; color: {generateColorsFromUsername(user).text}"
+					>
+						{user[0]}
+					</div>
+					<span>{user}</span>
+				</button>
+			{/each}
+			<button class="btn full-width logout" on:click={() => goto('/login')}>
+				<i class="fa-solid fa-right-from-bracket" />
+				add user
+			</button>
 			<button class="btn full-width logout" on:click={logout}>
 				<i class="fa-solid fa-right-from-bracket" />
 				logout
@@ -76,11 +102,17 @@
 	}
 
 	.user {
+		width: 100%;
+		margin-bottom: var(--radius);
+		padding: var(--radius);
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-		padding: var(--radius);
 		border-radius: var(--radius);
+		cursor: pointer;
+	}
+
+	.user.selected {
 		background-color: var(--white);
 	}
 
