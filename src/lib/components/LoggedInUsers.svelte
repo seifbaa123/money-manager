@@ -7,7 +7,7 @@
 	const username = Cookies.get('username') as string;
 	const colors = generateColorsFromUsername(username);
 
-	let showDialog = true;
+	let showDialog = false;
 	function logout() {
 		if (confirm($lang.words.are_you_sure_you_want_to_logout)) {
 			Cookies.remove('token');

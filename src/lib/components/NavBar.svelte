@@ -5,7 +5,10 @@
 
 <nav>
 	<div class="container">
-		<a href="/">{$lang.words.money_manager}</a>
+		<a href="/">
+			<img src="/icon.svg" alt={$lang.words.money_manager} />
+			{$lang.words.money_manager}
+		</a>
 		<div>
 			<LoggedInUsers />
 		</div>
@@ -23,6 +26,17 @@
 		align-items: center;
 		justify-content: center;
 		background-color: var(--white);
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+
+	img {
+		width: 2.5rem;
 	}
 
 	.container {
