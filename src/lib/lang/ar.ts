@@ -9,7 +9,9 @@ const lang: Lang = {
 		password: 'كلمة المرور',
 		submit: 'إرسال',
 		are_you_sure_you_want_to_logout: 'هل أنت متأكد أنك تريد تسجيل الخروج',
-		money_manager: 'مدير الأموال'
+		money_manager: 'مدير الأموال',
+		add_new_account: 'إضافة حساب جديد',
+		logout: 'تسجيل الخروج'
 	}
 };
 

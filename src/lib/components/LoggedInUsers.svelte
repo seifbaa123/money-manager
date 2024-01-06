@@ -55,11 +55,11 @@
 			{/each}
 			<button class="btn full-width logout" on:click={() => goto('/login')}>
 				<i class="fa-solid fa-right-from-bracket" />
-				add user
+				{$lang.words.add_new_account}
 			</button>
 			<button class="btn full-width logout" on:click={logout}>
 				<i class="fa-solid fa-right-from-bracket" />
-				logout
+				{$lang.words.logout}
 			</button>
 		</div>
 	{/if}

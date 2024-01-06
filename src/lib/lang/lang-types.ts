@@ -8,5 +8,7 @@ export default interface Lang {
 		submit: string;
 		are_you_sure_you_want_to_logout: string;
 		money_manager: string;
+		add_new_account: string;
+		logout: string;
 	};
 }
