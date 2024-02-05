@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { lang } from '$lib/store';
 	import Cookies from 'js-cookie';
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { generateColorsFromUsername } from '$lib/utils';
 	import { deleteUser, getUserToken, getUsers } from '$lib/users';
 
-	let username = Cookies.get('username') as string;
+	let username = Cookies.get('username') ?? '';
 	$: colors = generateColorsFromUsername(username);
 
 	let loggedInUsers = getUsers();
@@ -19,7 +19,7 @@
 		Cookies.set('token', token);
 
 		loggedInUsers = loggedInUsers;
-		invalidateAll();
+		invalidate('/');
 	}
 
 	function logout() {

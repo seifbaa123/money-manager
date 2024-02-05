@@ -1,5 +1,24 @@
 <script lang="ts">
+	import Input from '$lib/components/Input.svelte';
+	import { lang } from '$lib/store';
+	import AddButton from '$lib/components/AddButton.svelte';
+	import Modal from '$lib/components/Modal.svelte';
+
 	export let data;
+
+	let name = '';
+	let showAddCollectionPopup = false;
+
+	async function handleSubmit() {
+		const res = await fetch('/api/collections', {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ name })
+		});
+		const data = await res.json();
+		console.log(data);
+		location.reload();
+	}
 </script>
 
 <div class="collections">
@@ -10,6 +29,15 @@
 		</div>
 	{/each}
 </div>
+
+<AddButton onClick={() => (showAddCollectionPopup = true)} />
+<Modal bind:show={showAddCollectionPopup}>
+	<form on:submit|preventDefault={handleSubmit}>
+		<h1>Add a new collection</h1>
+		<Input label="name" bind:value={name} />
+		<button class="btn primary full-width">{$lang.words.submit}</button>
+	</form>
+</Modal>
 
 <style>
 	.collections {
