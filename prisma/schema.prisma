@@ -15,7 +15,6 @@ model Users {
 
 model Collections {
   name         String         @id
-  value        BigInt
   user         Users          @relation(fields: [username], references: [username])
   username     String
   transactions Transactions[]
@@ -23,7 +22,7 @@ model Collections {
 
 model Transactions {
   id             Int         @id
-  value          BigInt
+  value          Int
   collection     Collections @relation(fields: [collectionName], references: [name])
   collectionName String
 }
