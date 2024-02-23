@@ -14,17 +14,23 @@
 	}
 </script>
 
-<div class="collection">
-	<p>{collection.name}</p>
-	<h2>{collection.value}<span>د</span></h2>
-	<div class="actions">
-		<button class="remove-btn" on:click={handleRemove}>
-			<i class="fa-solid fa-trash" />
-		</button>
+<a href="/transactions/{collection.name}">
+	<div class="collection">
+		<p>{collection.name}</p>
+		<h2>{collection.value}<span>د</span></h2>
+		<div class="actions">
+			<button class="remove-btn" on:click={handleRemove}>
+				<i class="fa-solid fa-trash" />
+			</button>
+		</div>
 	</div>
-</div>
+</a>
 
 <style>
+	a {
+		text-decoration: none;
+	}
+
 	.collection {
 		padding: 2rem;
 		position: relative;
@@ -36,6 +42,7 @@
 	p {
 		font-size: 1rem;
 		margin-bottom: 1rem;
+		color: var(--black);
 	}
 
 	h2 {
