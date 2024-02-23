@@ -18,7 +18,7 @@ export async function load(request) {
 			0
 		);
 
-		const { transactions, ...collectionWithoutTransactions } = collection;
+		const { transactions, username, ...collectionWithoutTransactions } = collection;
 
 		return {
 			...collectionWithoutTransactions,
