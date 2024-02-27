@@ -9,7 +9,7 @@ export async function POST({ request, params, locals }) {
 
 	const body = await request.json();
 	const transaction = await db.transactions.create({
-		data: { value: body.value, date: body.date, collectionName: params.name }
+		data: { value: body.value, date: body.date, comment: body.comment, collectionName: params.name }
 	});
 
 	return json({ transaction });

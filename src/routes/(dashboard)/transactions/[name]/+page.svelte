@@ -8,6 +8,7 @@
 	export let data;
 
 	let value = 0;
+	let comment = '';
 	let date = new Date().toISOString().split('T')[0];
 
 	let showAddTransactionPopup = false;
@@ -15,7 +16,7 @@
 		const res = await fetch(`/api/transactions/${$page.params.name}`, {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({ value, date })
+			body: JSON.stringify({ value, date, comment })
 		});
 		const data = await res.json();
 		console.log(data);
@@ -38,6 +39,7 @@
 	<table>
 		<thead>
 			<th>#</th>
+			<th>Comment</th>
 			<th>Date</th>
 			<th>Value</th>
 			<th></th>
@@ -46,6 +48,7 @@
 			{#each data.transactions as t}
 				<tr>
 					<td>{t.id}</td>
+					<td>{t.comment}</td>
 					<td>{t.date}</td>
 					<td>{t.value}</td>
 					<td>
@@ -65,6 +68,7 @@
 		<h1>Add a new transaction</h1>
 		<Input type="date" label="Date" bind:value={date} />
 		<Input type="number" label="value" bind:value />
+		<Input type="textarea" label="Comment" bind:value={comment} />
 		<button class="btn primary full-width">{$lang.words.submit}</button>
 	</form>
 </Modal>

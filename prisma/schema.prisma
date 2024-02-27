@@ -24,6 +24,7 @@ model Transactions {
   id             Int         @id @default(autoincrement())
   value          Int
   date           String
+  comment        String
   collection     Collections @relation(fields: [collectionName], references: [name])
   collectionName String
 }
