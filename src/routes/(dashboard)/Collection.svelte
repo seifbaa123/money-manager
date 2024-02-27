@@ -69,8 +69,4 @@
 		right: unset;
 		left: 1rem;
 	}
-
-	.remove-btn {
-		color: var(--red);
-	}
 </style>
