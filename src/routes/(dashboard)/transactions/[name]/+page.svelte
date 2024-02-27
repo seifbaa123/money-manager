@@ -24,9 +24,24 @@
 </script>
 
 <h1>Collection {data.name}</h1>
-<p>
-	{JSON.stringify(data.transactions)}
-</p>
+<div class="table">
+	<table>
+		<thead>
+			<th>#</th>
+			<th>Date</th>
+			<th>Value</th>
+		</thead>
+		<tbody>
+			{#each data.transactions as t}
+				<tr>
+					<td>{t.id}</td>
+					<td>{t.date}</td>
+					<td>{t.value}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
 
 <AddButton onClick={() => (showAddTransactionPopup = true)} />
 <Modal bind:show={showAddTransactionPopup}>
