@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let label: string = '';
-	export let type: 'text' | 'password' | 'textarea' = 'text';
-	export let value: string = '';
+	export let type: 'text' | 'password' | 'textarea' | 'number' | 'date' = 'text';
+	export let value: string | number = '';
 </script>
 
 <div class="input">
@@ -11,6 +11,10 @@
 			<textarea bind:value />
 		{:else if type === 'password'}
 			<input type="password" bind:value />
+		{:else if type === 'number'}
+			<input type="number" bind:value />
+		{:else if type === 'date'}
+			<input type="date" bind:value />
 		{:else}
 			<input type="text" bind:value />
 		{/if}

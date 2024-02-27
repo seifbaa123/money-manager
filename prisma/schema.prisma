@@ -21,8 +21,9 @@ model Collections {
 }
 
 model Transactions {
-  id             Int         @id
+  id             Int         @id @default(autoincrement())
   value          Int
+  date           String
   collection     Collections @relation(fields: [collectionName], references: [name])
   collectionName String
 }
