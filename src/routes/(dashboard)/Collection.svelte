@@ -1,7 +1,11 @@
 <script lang="ts">
+	import AddTransaction from '$lib/modals/add-transaction.svelte';
+
 	type Collection = { name: string; value: number };
 
 	export let collection: Collection;
+
+	let showAddTransactionPopup = false;
 
 	async function handleRemove() {
 		const res = await fetch(`/api/collections/${collection.name}`, {
@@ -19,12 +23,17 @@
 		<p>{collection.name}</p>
 		<h2>{collection.value}<span>د</span></h2>
 		<div class="actions">
+			<button class="add-btn" on:click={() => (showAddTransactionPopup = true)}>
+				<i class="fa-solid fa-plus" />
+			</button>
 			<button class="remove-btn" on:click={handleRemove}>
 				<i class="fa-solid fa-trash" />
 			</button>
 		</div>
 	</div>
 </a>
+
+<AddTransaction collection={collection.name} bind:show={showAddTransactionPopup} />
 
 <style>
 	a {
