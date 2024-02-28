@@ -31,8 +31,8 @@
 <AddButton onClick={() => (showAddCollectionPopup = true)} />
 <Modal bind:show={showAddCollectionPopup}>
 	<form on:submit|preventDefault={handleSubmit}>
-		<h1>Add a new collection</h1>
-		<Input label="name" bind:value={name} />
+		<h1>{$lang.words.add_new_collection}</h1>
+		<Input label={$lang.words.name} bind:value={name} />
 		<button class="btn primary full-width">{$lang.words.submit}</button>
 	</form>
 </Modal>

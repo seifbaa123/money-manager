@@ -34,14 +34,14 @@
 	}
 </script>
 
-<h1>Collection {data.name}</h1>
+<h1>{data.name}</h1>
 <div class="table">
 	<table>
 		<thead>
 			<th>#</th>
-			<th>Comment</th>
-			<th>Date</th>
-			<th>Value</th>
+			<th>{$lang.words.comment}</th>
+			<th>{$lang.words.date}</th>
+			<th>{$lang.words.value}</th>
 			<th></th>
 		</thead>
 		<tbody>
@@ -65,10 +65,10 @@
 <AddButton onClick={() => (showAddTransactionPopup = true)} />
 <Modal bind:show={showAddTransactionPopup}>
 	<form on:submit|preventDefault={handleSubmit}>
-		<h1>Add a new transaction</h1>
-		<Input type="date" label="Date" bind:value={date} />
-		<Input type="number" label="value" bind:value />
-		<Input type="textarea" label="Comment" bind:value={comment} />
+		<h1>{$lang.words.add_new_transaction}</h1>
+		<Input type="date" label={$lang.words.date} bind:value={date} />
+		<Input type="number" label={$lang.words.value} bind:value />
+		<Input type="textarea" label={$lang.words.comment} bind:value={comment} />
 		<button class="btn primary full-width">{$lang.words.submit}</button>
 	</form>
 </Modal>

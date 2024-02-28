@@ -10,5 +10,11 @@ export default interface Lang {
 		money_manager: string;
 		add_new_account: string;
 		logout: string;
+		add_new_collection: string;
+		name: string;
+		comment: string;
+		date: string;
+		value: string;
+		add_new_transaction: string;
 	};
 }
